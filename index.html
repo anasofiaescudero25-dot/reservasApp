@@ -3,67 +3,135 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Reservas de espacios</title>
+  <title>Valsofjuan — Gestión de Espacios Exclusivos</title>
   <link rel="stylesheet" href="vendor/bootstrap.min.css">
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
 </head>
-<body>
-  <header class="topbar">
-    <div class="container py-3">
-      <p class="brand mb-2">Reservas de espacios</p>
-      <nav class="d-flex flex-wrap gap-2" aria-label="Principal">
-        <a class="btn btn-outline-light" href="#nueva">Nueva reserva</a>
-        <a class="btn btn-outline-light" href="#mis">Mis reservas</a>
+<body class="bg-light text-dark">
+
+  <!-- Header / Navbar Principal -->
+  <header class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm py-3">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2 fw-bold text-uppercase tracking-wide" href="#">
+        <span class="bg-primary text-white rounded px-2 py-1 fs-6">VJ</span>
+        <span>Valsofjuan</span>
+      </a>
+      <nav class="d-flex gap-2" aria-label="Navegación principal">
+        <a class="btn btn-primary btn-sm px-3 shadow-sm" href="#nueva">Nueva reserva</a>
+        <a class="btn btn-outline-light btn-sm px-3" href="#mis">Mis reservas</a>
       </nav>
     </div>
   </header>
 
-  <main class="container py-4">
+  <!-- Hero Section -->
+  <section class="bg-white border-bottom py-4 mb-4">
+    <div class="container">
+      <span class="badge bg-primary-subtle text-primary mb-2 fw-semibold">Plataforma de Reservas</span>
+      <h1 class="h3 fw-bold mb-1">Reserva de Espacios Corporativos</h1>
+      <p class="text-muted mb-0">Gestiona tus horarios y asegura tus salas de reuniones en unos sencillos pasos.</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="container mb-5">
+    <!-- Seccion Nueva Reserva -->
     <section id="nueva" aria-labelledby="titulo-nueva">
-      <h1 id="titulo-nueva" tabindex="-1">Nueva reserva</h1>
-      <p>Elige un espacio y un intervalo. Todos los campos son obligatorios.</p>
-      <div class="row g-3">
-        <div class="col-12 col-md-8">
-          <form id="form-reserva" class="panel p-3">
-            <label class="form-label" for="recurso">Espacio</label>
-            <select class="form-select mb-3" id="recurso" required>
-              <option value="">Selecciona un espacio</option>
-              <option value="Sala A">Sala A</option>
-              <option value="Sala B">Sala B</option>
-            </select>
-            <label class="form-label" for="fecha">Fecha</label>
-            <input class="form-control mb-3" id="fecha" type="date" required>
-            <div class="row g-3 mb-3">
-              <div class="col-12 col-sm-6">
-                <label class="form-label" for="inicio">Hora inicial</label>
-                <input class="form-control" id="inicio" type="time" required>
-              </div>
-              <div class="col-12 col-sm-6">
-                <label class="form-label" for="fin">Hora final</label>
-                <input class="form-control" id="fin" type="time" required>
-              </div>
+      <div class="row g-4">
+        <div class="col-12 col-lg-8">
+          <div class="card border-0 shadow-sm rounded-3">
+            <div class="card-body p-4">
+              <h2 id="titulo-nueva" class="h5 fw-bold mb-3 text-secondary" tabindex="-1">Detalles de la Reserva</h2>
+              
+              <form id="form-reserva">
+                <div class="mb-3">
+                  <label class="form-label fw-medium" for="recurso">Espacio o Sala</label>
+                  <select class="form-select form-select-lg fs-6" id="recurso" required>
+                    <option value="" disabled selected>Selecciona un espacio disponible...</option>
+                    <option value="Sala A (Executive Suite)">Sala A — Executive Suite</option>
+                    <option value="Sala B (Innovation Hub)">Sala B — Innovation Hub</option>
+                    <option value="Sala C (Auditorio Valsofjuan)">Sala C — Auditorio Valsofjuan</option>
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label fw-medium" for="fecha">Fecha de la reserva</label>
+                  <input class="form-control" id="fecha" type="date" required>
+                </div>
+
+                <div class="row g-3 mb-3">
+                  <div class="col-12 col-sm-6">
+                    <label class="form-label fw-medium" for="inicio">Hora inicial</label>
+                    <input class="form-control" id="inicio" type="time" required>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <label class="form-label fw-medium" for="fin">Hora final</label>
+                    <input class="form-control" id="fin" type="time" required>
+                  </div>
+                </div>
+
+                <div id="error" class="alert alert-danger py-2 d-none" role="alert"></div>
+
+                <div class="d-grid gap-2 d-md-flex justify-md-content-end mt-4">
+                  <button class="btn btn-primary btn-lg px-4 fs-6" type="submit">Confirmar y Reservar</button>
+                </div>
+              </form>
             </div>
-            <p id="error" class="text-danger" role="alert"></p>
-            <button class="btn btn-primary" type="submit">Reservar espacio</button>
-          </form>
+          </div>
         </div>
-        <aside class="col-12 col-md-4" aria-labelledby="reglas">
-          <div class="panel p-3">
-            <h2 class="h5" id="reglas">Reglas del horario</h2>
-            <p class="mb-0">La fecha debe ser hoy o posterior. La hora final debe ser posterior a la inicial. Un espacio no admite reservas que se crucen el mismo día.</p>
+
+        <!-- Sidebar Informativo -->
+        <aside class="col-12 col-lg-4" aria-labelledby="reglas">
+          <div class="card border-0 shadow-sm rounded-3 bg-white h-100">
+            <div class="card-body p-4">
+              <div class="d-flex align-items-center gap-2 mb-3">
+                <span class="badge bg-warning text-dark rounded-circle p-2">i</span>
+                <h3 class="h6 fw-bold mb-0" id="reglas">Políticas de uso</h3>
+              </div>
+              <ul class="list-unstyled text-muted small mb-0 d-flex flex-column gap-2">
+                <li class="d-flex align-items-start gap-2">
+                  <span>•</span>
+                  <span>La fecha seleccionada debe ser el día de hoy o una fecha posterior.</span>
+                </li>
+                <li class="d-flex align-items-start gap-2">
+                  <span>•</span>
+                  <span>La hora final debe ser posterior a la hora de inicio.</span>
+                </li>
+                <li class="d-flex align-items-start gap-2">
+                  <span>•</span>
+                  <span>No se admiten reservas solapadas en un mismo espacio el mismo día.</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </aside>
       </div>
     </section>
 
-    <section id="mis" aria-labelledby="titulo-mis" hidden>
-      <h1 id="titulo-mis" tabindex="-1">Mis reservas</h1>
-      <p id="confirmacion" class="text-success fw-semibold"></p>
-      <p id="vacio">Aún no tienes reservas en este navegador.</p>
-      <ul id="lista" class="row g-3 list-unstyled"></ul>
-      <a class="btn btn-primary" href="#nueva">Crear otra reserva</a>
+    <!-- Seccion Mis Reservas -->
+    <section id="mis" aria-labelledby="titulo-mis" class="mt-4" hidden>
+      <div class="card border-0 shadow-sm rounded-3">
+        <div class="card-body p-4">
+          <h2 id="titulo-mis" class="h4 fw-bold mb-3" tabindex="-1">Mis Reservas</h2>
+          
+          <div id="confirmacion" class="alert alert-success d-none" role="alert"></div>
+          
+          <p id="vacio" class="text-muted">Aún no tienes reservas registradas en este navegador.</p>
+          
+          <ul id="lista" class="row g-3 list-unstyled mb-4"></ul>
+          
+          <a class="btn btn-outline-primary" href="#nueva">Crear una nueva reserva</a>
+        </div>
+      </div>
     </section>
   </main>
+
+  <!-- Footer -->
+  <footer class="border-top py-3 bg-white mt-auto text-center text-muted fs-7">
+    <div class="container">
+      <small>© 2026 Valsofjuan. Todos los derechos reservados.</small>
+    </div>
+  </footer>
+
 </body>
 </html>

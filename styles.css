@@ -1,6 +1,103 @@
-body { background: #f1f5f8; color: #132c45; }
-.topbar { background: #132c45; color: #fff; }
-.brand { font-size: 1.15rem; font-weight: 700; }
-.panel { background: #fff; border: 1px solid #bdccd7; border-radius: .75rem; }
-:focus-visible { outline: 3px solid #873a00; outline-offset: 3px; }
-.topbar :focus-visible { outline-color: #ffcb69; }
+/* ==========================================
+   VALSOFJUAN — ESTILOS GLOBALES & COMPONENTES
+   ================================---------- */
+
+:root {
+  --vj-bg: #f9f6f0;           /* Fondo general cálido y suave */
+  --vj-surface: #ffffff;      /* Superficies de tarjetas y paneles */
+  --vj-primary: #873a00;      /* Color principal de acento (Tostado/Bronce) */
+  --vj-primary-hover: #6d2e00;/* Estado hover del color principal */
+  --vj-accent: #ffcb69;       /* Acento secundario luminoso */
+  --vj-text: #2c221e;         /* Texto principal de alta legibilidad */
+  --vj-text-muted: #6c757d;   /* Texto secundario */
+  --vj-border: #e6dfd5;       /* Bordes sutiles y elegantes */
+  --vj-radius: 0.75rem;       /* Radio de bordes redondeados */
+}
+
+/* Base del Documento */
+body {
+  background-color: var(--vj-bg);
+  color: var(--vj-text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Barra Superior (Topbar / Header) */
+.topbar, 
+header.bg-dark {
+  background-color: var(--vj-text) !important;
+  color: #fff;
+  border-bottom: 3px solid var(--vj-primary);
+}
+
+.brand,
+.navbar-brand {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #fff !important;
+}
+
+/* Paneles y Tarjetas */
+.panel,
+.card {
+  background-color: var(--vj-surface);
+  border: 1px solid var(--vj-border) !important;
+  border-radius: var(--vj-radius) !important;
+  box-shadow: 0 4px 6px -1px rgba(44, 34, 30, 0.03), 0 2px 4px -2px rgba(44, 34, 30, 0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 10px 15px -3px rgba(44, 34, 30, 0.05), 0 4px 6px -4px rgba(44, 34, 30, 0.05);
+}
+
+/* Botones Personalizados Valsofjuan */
+.btn-primary {
+  background-color: var(--vj-primary) !important;
+  border-color: var(--vj-primary) !important;
+  font-weight: 600;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--vj-primary-hover) !important;
+  border-color: var(--vj-primary-hover) !important;
+}
+
+.btn-outline-primary {
+  color: var(--vj-primary) !important;
+  border-color: var(--vj-primary) !important;
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--vj-primary) !important;
+  color: #fff !important;
+}
+
+/* Accesibilidad y Focos (Focus States) */
+:focus-visible {
+  outline: 3px solid var(--vj-primary);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 0.25rem rgba(135, 58, 0, 0.15);
+}
+
+.topbar :focus-visible,
+header :focus-visible {
+  outline-color: var(--vj-accent);
+}
+
+/* Formularios y Inputs */
+.form-control, 
+.form-select {
+  border-color: var(--vj-border);
+  border-radius: 0.5rem;
+  padding: 0.65rem 1rem;
+}
+
+.form-control:focus, 
+.form-select:focus {
+  border-color: var(--vj-primary);
+  box-shadow: 0 0 0 0.25rem rgba(135, 58, 0, 0.12);
+}
