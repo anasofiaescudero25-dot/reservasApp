@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reservas de espacios</title>
+  <link rel="stylesheet" href="vendor/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container py-3">
+      <p class="brand mb-2">Reservas de espacios</p>
+      <nav class="d-flex flex-wrap gap-2" aria-label="Principal">
+        <a class="btn btn-outline-light" href="#nueva">Nueva reserva</a>
+        <a class="btn btn-outline-light" href="#mis">Mis reservas</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container py-4">
+    <section id="nueva" aria-labelledby="titulo-nueva">
+      <h1 id="titulo-nueva" tabindex="-1">Nueva reserva</h1>
+      <p>Elige un espacio y un intervalo. Todos los campos son obligatorios.</p>
+      <div class="row g-3">
+        <div class="col-12 col-md-8">
+          <form id="form-reserva" class="panel p-3">
+            <label class="form-label" for="recurso">Espacio</label>
+            <select class="form-select mb-3" id="recurso" required>
+              <option value="">Selecciona un espacio</option>
+              <option value="Sala A">Sala A</option>
+              <option value="Sala B">Sala B</option>
+            </select>
+            <label class="form-label" for="fecha">Fecha</label>
+            <input class="form-control mb-3" id="fecha" type="date" required>
+            <div class="row g-3 mb-3">
+              <div class="col-12 col-sm-6">
+                <label class="form-label" for="inicio">Hora inicial</label>
+                <input class="form-control" id="inicio" type="time" required>
+              </div>
+              <div class="col-12 col-sm-6">
+                <label class="form-label" for="fin">Hora final</label>
+                <input class="form-control" id="fin" type="time" required>
+              </div>
+            </div>
+            <p id="error" class="text-danger" role="alert"></p>
+            <button class="btn btn-primary" type="submit">Reservar espacio</button>
+          </form>
+        </div>
+        <aside class="col-12 col-md-4" aria-labelledby="reglas">
+          <div class="panel p-3">
+            <h2 class="h5" id="reglas">Reglas del horario</h2>
+            <p class="mb-0">La fecha debe ser hoy o posterior. La hora final debe ser posterior a la inicial. Un espacio no admite reservas que se crucen el mismo día.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="mis" aria-labelledby="titulo-mis" hidden>
+      <h1 id="titulo-mis" tabindex="-1">Mis reservas</h1>
+      <p id="confirmacion" class="text-success fw-semibold"></p>
+      <p id="vacio">Aún no tienes reservas en este navegador.</p>
+      <ul id="lista" class="row g-3 list-unstyled"></ul>
+      <a class="btn btn-primary" href="#nueva">Crear otra reserva</a>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,20 @@
+UNIVERSIDAD DE CALDAS · SESIÓN 7
+Análisis y Diseño de Soluciones Web
+
+1. Extrae el ZIP y abre esta carpeta en VS Code.
+2. En Terminal > Nueva terminal, ejecuta en Windows:
+       py -m http.server 8000 --bind 127.0.0.1
+   En Linux/macOS (o Windows con python en PATH), usa python3 o python
+   según la instalación, con los mismos argumentos.
+3. Abre http://127.0.0.1:8000 en el navegador.
+4. Para detener el servidor, vuelve a la terminal y presiona Ctrl+C.
+5. Mantén el mismo host y puerto para recuperar las reservas.
+
+Bootstrap 5.3.3 está incluido en vendor; el proyecto no usa internet
+en ejecución. Para ejecutar el comando se necesita Python 3.
+El proyecto guarda reservas reales en el navegador (localStorage).
+No hay cuentas, base de datos remota ni sincronización entre equipos.
+
+Prueba rápida: elige una fecha futura y Sala A. Reserva 10:00–11:00.
+Prueba 10:30–11:30 para el mismo espacio y día: debe rechazar.
+Prueba 11:00–12:00: debe aceptar. Recarga: ambas deben seguir visibles.
